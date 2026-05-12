@@ -8,8 +8,8 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "🧠 FJJ 知识库",
-    pageTitleSuffix: " | FJJ Wiki",
+    pageTitle: "🧠 DogeLover 知识库",
+    pageTitleSuffix: " | DogeLover Wiki",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
