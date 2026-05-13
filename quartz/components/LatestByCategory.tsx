@@ -1,8 +1,5 @@
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { resolveRelative } from "../util/path"
-import { QuartzPluginData } from "../plugins/vfile"
-import { Date, getDate } from "./Date"
-import { GlobalConfiguration } from "../cfg"
 import { classNames } from "../util/lang"
 import style from "./styles/recentNotes.scss"
 
@@ -18,12 +15,16 @@ const defaultCategories = (): Category[] => [
   { slug: "时政要闻", icon: "📰", label: "时政" },
 ]
 
+const slugDate = (s: string): number => {
+  const m = s.match(/(\d{4}-\d{2}-\d{2})/)
+  return m ? +new Date(m[1]) : 0
+}
+
 export default (() => {
   const LatestByCategory: QuartzComponent = ({
     allFiles,
     fileData,
     displayClass,
-    cfg,
   }: QuartzComponentProps) => {
     const categories = defaultCategories()
 
@@ -34,16 +35,11 @@ export default (() => {
           {categories.map((cat) => {
             const latest = allFiles
               .filter((f) => f.slug?.startsWith(cat.slug as any) && f.slug !== cat.slug)
-              .sort((a, b) => {
-                const da = a.dates?.modified ?? a.dates?.created ?? new Date(0)
-                const db = b.dates?.modified ?? b.dates?.created ?? new Date(0)
-                return db.getTime() - da.getTime()
-              })[0]
+              .sort((a, b) => slugDate(b.slug!) - slugDate(a.slug!))[0]
 
             if (!latest) return null
 
-            const title = (latest.frontmatter?.title ?? latest.slug?.split("/").pop() ?? "").slice(-5);
-            const date = getDate(cfg, latest);
+            const title = (latest.frontmatter?.title ?? latest.slug?.split("/").pop() ?? "").slice(-5)
 
             return (
               <li class="recent-li">
@@ -58,11 +54,6 @@ export default (() => {
                       </a>
                     </h3>
                   </div>
-                  {date && (
-                    <p class="meta">
-                      <Date date={date} locale={cfg.locale} />
-                    </p>
-                  )}
                 </div>
               </li>
             )
