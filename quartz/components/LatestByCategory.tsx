@@ -13,9 +13,9 @@ interface Category {
 }
 
 const defaultCategories = (): Category[] => [
-  { slug: "AI科技动态", icon: "🤖", label: "AI科技动态" },
-  { slug: "GitHub Trending", icon: "💻", label: "GitHub Trending" },
-  { slug: "时政要闻", icon: "📰", label: "时政要闻" },
+  { slug: "AI科技动态", icon: "🤖", label: "AI动态" },
+  { slug: "GitHub-Trending", icon: "💻", label: "GitHub" },
+  { slug: "时政要闻", icon: "📰", label: "时政" },
 ]
 
 export default (() => {
@@ -42,8 +42,8 @@ export default (() => {
 
             if (!latest) return null
 
-            const title = latest.frontmatter?.title ?? latest.slug?.split("/").pop() ?? ""
-            const date = getDate(cfg, latest)
+            const title = (latest.frontmatter?.title ?? latest.slug?.split("/").pop() ?? "").slice(-5);
+            const date = getDate(cfg, latest);
 
             return (
               <li class="recent-li">
@@ -54,7 +54,7 @@ export default (() => {
                         href={resolveRelative(fileData.slug!, latest.slug!)}
                         class="internal"
                       >
-                        {cat.icon} {cat.label} → {title}
+                        {cat.icon} {cat.label} · {title}
                       </a>
                     </h3>
                   </div>
