@@ -7,7 +7,6 @@
 // 否则会被 min-width: 100% 覆盖
 .page > #quartz-body .center {
   min-width: 0;
-  overflow-x: clip;
 }
 
 article {
@@ -19,6 +18,13 @@ article {
 // 长链接全局断行（不在 @media 内）
 a {
   word-break: break-word;
+}
+
+// KaTeX 内文本断行（$...$ 包裹的中英文混排）
+.katex,
+.katex * {
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 // === 表格美化 ===
