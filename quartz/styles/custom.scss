@@ -20,6 +20,13 @@ a {
   word-break: break-word;
 }
 
+// KaTeX 正文段落内：覆盖 white-space: nowrap
+// (katex.min.css 设置 .katex { white-space: nowrap } 阻止所有换行)
+p .katex,
+li .katex {
+  white-space: normal;
+}
+
 // KaTeX 内文本断行（$...$ 包裹的中英文混排）
 .katex,
 .katex * {
