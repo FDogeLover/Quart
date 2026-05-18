@@ -3,9 +3,11 @@
 // put your custom CSS here!
 
 // === 防止内容溢出到侧边栏 ===
-// min-width:0 强制 CSS Grid 子元素不超出分配空间
-.center {
+// 必须匹配 base.scss 的 .page > #quartz-body .center 特异性
+// 否则会被 min-width: 100% 覆盖
+.page > #quartz-body .center {
   min-width: 0;
+  overflow-x: clip;
 }
 
 article {
