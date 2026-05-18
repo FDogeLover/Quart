@@ -20,11 +20,14 @@ a {
   word-break: break-word;
 }
 
-// KaTeX 正文段落内：覆盖 white-space: nowrap
-// (katex.min.css 设置 .katex { white-space: nowrap } 阻止所有换行)
-p .katex,
-li .katex {
+// KaTeX 正文段落内：覆盖 .katex .base { white-space:nowrap; width:min-content }
+// 特异性 0,0,2,1 正好压过 KaTeX 的 0,0,2,0
+p .katex .base,
+li .katex .base,
+p .katex .strut,
+li .katex .strut {
   white-space: normal;
+  width: auto;
 }
 
 // KaTeX 内文本断行（$...$ 包裹的中英文混排）
