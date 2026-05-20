@@ -2,7 +2,7 @@ import os
 import datetime
 import re
 
-cutoff = os.environ.get("CONTENT_RETENTION_DAYS", "7")
+cutoff = os.environ.get("CONTENT_RETENTION_DAYS", "6")
 cutoff = datetime.date.today() - datetime.timedelta(days=int(cutoff))
 
 vault_dir = None
