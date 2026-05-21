@@ -98,11 +98,16 @@
   padding-top: 8px;
   border-top: 1px solid var(--lightgray);
   font-size: 0.8rem;
-  color: var(--gray);
+  color: var(--darkgray);
+}
+.ai-sources strong {
+  color: var(--dark);
 }
 .ai-sources span {
   display: inline-block;
-  background: var(--lightgray);
+  background: var(--highlight);
+  color: var(--darkgray);
+  border: 1px solid var(--lightgray);
   padding: 2px 8px;
   border-radius: 12px;
   margin: 2px 4px 2px 0;
